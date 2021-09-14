@@ -7,11 +7,9 @@ const SearchComponent = () => {
   const [searchText, setSearchText] = useState("");
   const [searchResult, setSearchResult] = useState([]);
 
-  const getSearchResult = async (searchText) => {
-    // let text = "football";
-    let response = await fetch(
-      `https://duckduckgo.com/?format=json&q=${searchText}`
-    );
+  const getSearchResult = async () => {
+    let text = "football";
+    let response = await fetch(`https://duckduckgo.com/?format=json&q=${text}`);
     let json = await response.json();
     setSearchResult(json.RelatedTopics[3].Topics);
   };
