@@ -1,5 +1,5 @@
 import Ionicons from "@expo/vector-icons/build/Ionicons";
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { View, StyleSheet, TextInput, Text, ScrollView } from "react-native";
 import { Card } from "../components/CardComponent";
 

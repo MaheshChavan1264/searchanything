@@ -1,5 +1,5 @@
 import React from "react";
-import { View, Text, Image } from "react-native";
+import { View } from "react-native";
 import { StyleSheet } from "react-native";
 import AppLoading from "expo-app-loading";
 import { Dimensions } from "react-native";
