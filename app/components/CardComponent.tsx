@@ -17,13 +17,22 @@ export function Card(props) {
           style={styles.image}
         />
         <View style={styles.cardContent}>
-          <Text style={{ fontSize: 20, fontWeight: "bold" }}>
+          <Text
+            style={{ fontSize: 20, fontWeight: "bold" }}
+            numberOfLines={1}
+            ellipsizeMode="tail"
+          >
             {props.children[0]}
           </Text>
-          <Text style={{ fontSize: 16, color: "lightgrey" }}>
+          <Text style={{ fontSize: 16, color: "lightgrey" }} numberOfLines={1}>
             {props.children[1]}
           </Text>
-          <TouchableOpacity onPress={() => changeState()}>
+          <TouchableOpacity
+            onPress={() => {
+              changeState();
+            }}
+            style={styles.star}
+          >
             <AntDesign
               name={add ? "star" : "staro"}
               size={24}
@@ -43,6 +52,7 @@ const styles = StyleSheet.create({
   },
   card: {
     height: 100,
+    width: 420,
     backgroundColor: "white",
     borderRadius: 5,
     shadowColor: "grey",
@@ -51,9 +61,9 @@ const styles = StyleSheet.create({
     shadowRadius: 8,
     elevation: 8,
     flexDirection: "row",
-    marginTop: 6,
+    // marginTop: 6,
     marginBottom: 6,
-    marginLeft: 16,
+    marginLeft: 30,
     marginRight: 16,
   },
   cardContent: {
@@ -70,8 +80,20 @@ const styles = StyleSheet.create({
     marginBottom: 10,
   },
   star: {
-    marginLeft: 300,
+    marginLeft: 250,
     marginRight: 40,
     marginTop: -25,
+  },
+  MainContainer: {
+    flex: 1,
+    justifyContent: "center",
+    alignItems: "center",
+  },
+
+  TextStyle: {
+    textAlign: "center",
+    fontSize: 20,
+    padding: 10,
+    color: "#000",
   },
 });

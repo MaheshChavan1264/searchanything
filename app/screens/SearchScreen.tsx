@@ -22,17 +22,27 @@ function SearchScreen() {
         }}
       >
         <SearchComponent />
-        <Image
+        {/* <Image
           source={require("../assets/images/home.png")}
           style={styles.images}
         />
         <Text style={styles.container}>
           To explore on your interest click on search above
-        </Text>
+        </Text> */}
       </View>
     );
   }
 }
+//  <ScrollView style={{ marginTop: 500, marginLeft: -15 }}>
+//    {searchResult.map((item) => (
+//      <>
+//        <Card>
+//          <Text>{item.Text.substring(0, 21)}</Text>
+//          <Text>{item.FirstURL.substring(0, 21)}</Text>
+//        </Card>
+//      </>
+//    ))}
+//  </ScrollView>;
 export default SearchScreen;
 
 var { height, width } = Dimensions.get("window");

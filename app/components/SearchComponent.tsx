@@ -1,30 +1,54 @@
 import Ionicons from "@expo/vector-icons/build/Ionicons";
-import React, { Component, useState } from "react";
-import { View, StyleSheet, TextInput, Text } from "react-native";
+import React, { useEffect, useState } from "react";
+import { View, StyleSheet, TextInput, Text, ScrollView } from "react-native";
+import { Card } from "../components/CardComponent";
 
 const SearchComponent = () => {
   const [searchText, setSearchText] = useState("");
+  const [searchResult, setSearchResult] = useState([]);
 
-  console.log(searchText);
+  const getSearchResult = async (searchText) => {
+    // let text = "football";
+    let response = await fetch(
+      `https://duckduckgo.com/?format=json&q=${searchText}`
+    );
+    let json = await response.json();
+    setSearchResult(json.RelatedTopics[3].Topics);
+  };
+
   return (
-    <View style={styles.section}>
-      <Ionicons
-        name="search-outline"
-        size={33}
-        color={"#000"}
-        style={styles.icon}
-      />
-      <TextInput
-        placeholder="Search Keyword"
-        style={styles.input}
-        onChangeText={(val) => {
-          setSearchText(val);
-        }}
-      />
-    </View>
+    <>
+      <View style={styles.section}>
+        <Ionicons
+          name="search-outline"
+          size={33}
+          color={"#000"}
+          style={styles.icon}
+        />
+        <TextInput
+          placeholder="Search Keyword"
+          style={styles.input}
+          onChangeText={(val) => {
+            setSearchText(val);
+            val.length > 3 ? getSearchResult(searchText) : setSearchResult([]);
+          }}
+        />
+      </View>
+      <ScrollView style={{ marginTop: 100 }}>
+        {searchResult.map((item) => (
+          <>
+            <Card>
+              <Text>{item.Text.substring(0, 21)}</Text>
+              <Text>{item.FirstURL.substring(0, 21)}</Text>
+            </Card>
+          </>
+        ))}
+      </ScrollView>
+    </>
   );
 };
 export default SearchComponent;
+
 const styles = StyleSheet.create({
   section: {
     flex: 1,
